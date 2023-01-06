@@ -55,13 +55,24 @@ String Compliment(int number) {
 }
 
 */
+import 'user.dart';
+import 'email.dart';
+
 void main() {
   helloPersonAndPet('John', 'jonny');
   print(fullName('Rodgers', 'Meroka', 'Mr.'));
   print(multiply(2, 3));
-  final user = User(42, 'Ray');
+  final user = User(id: 42, name: 'Ray');
   print(user);
-  print(user.toJson());
+  final vicki = User(id: 24, name: 'Vicki');
+  final anonymousUser = User.anonymous();
+  print(anonymousUser);
+  final jb = User(id: 1, name: 'JB Lorenzo');
+  print(jb);
+
+  final email = Email();
+  email.value = 'ray@gmail.com';
+  final emailString = email.value;
 
   final password = Password()..value = '23Em';
   print(password);
@@ -90,28 +101,9 @@ bool withinTolerance({
 
 final multiply = (int a, int b) => a * b;
 
-class User {
-  User(int id, String Name) {
-    this.id = id;
-    this.name = name;
-  }
-  int id = 0;
-  String name = '';
-
-  String toJson() {
-    return '{"id":$id, "name":$name}';
-  }
-
-  @override
-  String toString() {
-    return 'User(id: $id, name:$name)';
-  }
-}
-
 // Create a class called Password and give it a string property called value.
 class Password {
-  String value = '';
-  var clef = '\u{1D11E}';
+  final String value = '';
 
   String isValid() {
     if (value.length > 8) {
@@ -123,6 +115,23 @@ class Password {
 
   @override
   String toString() {
-    return 'Password(Password: $value, Symbol:$clef)';
+    return 'Password(Password: $value)';
   }
 }
+
+//Refactoring email class
+//using it as  a public class
+class Email {
+  var value = '';
+}
+
+////only a getter not a setter
+
+class Email_gettter {
+  Email(this.value);
+  final value;
+}
+
+
+//refactoring user class
+
